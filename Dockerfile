@@ -3,11 +3,17 @@ FROM base/archlinux
 
 MAINTAINER Michel
 
-# setup pacman
+# setup keyring
 RUN pacman-key --populate archlinux && pacman-key --refresh-keys
 
+RUN echo "[archlinuxfr]" >> /etc/pacman.conf && echo "SigLevel = Never" >> /etc/pacman.conf && echo ttp://repo.archlinux.fr/$arch" >> /etc/pacman.conf
+
+
 # install base packages
-RUN pacman -Syyu --needed base-devel git --noconfirm
+#RUN pacman -Syu --needed base-devel git --noconfirm
+RUN yaourt -Syu git --devel --aur
+
+
 
 # install yaourt
 WORKDIR /tmp
