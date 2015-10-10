@@ -6,7 +6,7 @@ MAINTAINER Michel
 # setup keyring
 RUN pacman-key --populate archlinux && pacman-key --refresh-keys
 
-RUN echo "[archlinuxfr]" >> /etc/pacman.conf && echo "SigLevel = Never" >> /etc/pacman.conf && echo "Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
+RUN echo '[archlinuxfr]' >> /etc/pacman.conf && echo 'SigLevel = Never' >> /etc/pacman.conf && echo 'Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
 RUN tail /etc/pacman.conf
 
 # install base packages
