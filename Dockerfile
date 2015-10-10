@@ -13,7 +13,10 @@ RUN echo '[archlinuxfr]' >> /etc/pacman.conf && echo 'SigLevel = Never' >> /etc/
 RUN pacman -Syu --needed base-devel git yaourt --noconfirm
 RUN pacman-db-upgrade
 
-
+# makepkg config
 RUN cd /usr/bin && curl -O https://aur.archlinux.org/cgit/aur.git/plain/makepkg-asroot.patch?h=makepkg-asroot && patch -p0 -i makepkg-asroot.patch?h=makepkg-asroot && cd -
+RUN cat /etc/makepkg.conf | grep MAKEFLAGS
+RUN sed -i 's|#MAKEFLAGS=|MAKEFLAGS=|g' /etc/makepkg.conf
 
-RUN yaourt -Syu openturns ipython-ipyparallel python-matplotlib --aur --noconfirm
+# install packages
+RUN yaourt -Syu openturns python-matplotlib python-pandas jupyter ipython-ipyparallel --aur --noconfirm
