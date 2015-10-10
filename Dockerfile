@@ -3,7 +3,7 @@ FROM base/archlinux
 
 MAINTAINER Michel
 
-RUN pacman -Syyu --needed base-devel git --noconfirm
+RUN pacman-key --populate archlinux && pacman-key --refresh-keys && pacman -Syyu --needed base-devel git --noconfirm
 
 # install yaourt
 WORKDIR /tmp
